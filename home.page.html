@@ -1,0 +1,102 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      API Post
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+   <div class="main-area">
+<div class ="content-area">
+<div class="header">
+
+
+
+  <h1>Manage Products</h1>
+
+  <hr>
+</div>
+<div class="form-area">
+  <h3>Create Product</h3>
+<!-- #productsForm howa local reference variable w naadilou ngForm pour tester 
+
+w baad el methode heki onproductcreate bech ki nros aala submit ytala3li les valeurs nte3 les attribut nte3i
+
+-->
+
+
+  <form   #productsForm="ngForm"  (ngSubmit)="onProductCreate(productsForm.value)"> 
+<label>Name</label>
+<input type="text"  name="pName" ngModel>
+
+<label>Description</label>
+<input type="text" name="description" ngModel>
+
+<label>Price</label>
+<input type="text" name="price" ngModel>
+
+<input type="submit" value="{{editMode ? 'Update Product' : 'Add Product'}}">
+<!--if editmode takhou ture maneha ywali el button esmou update  ken false yaaml Add product -->
+
+  </form>
+</div>
+
+<div class="product-display-area">
+<h3>All products</h3>
+
+<ion-grid>
+  <ion-row id ="products">
+    <ion-col>
+    #
+    </ion-col>
+    <ion-col>
+      Name
+    </ion-col>
+    <ion-col>
+    Description
+    </ion-col>
+    <ion-col>
+      price
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row *ngFor="let prod of allproducts  ;  index as i ">
+    <ion-col>
+
+    </ion-col>
+    {{i+1}}
+    <ion-col>
+      {{prod.pName}}
+    </ion-col>
+    <ion-col>
+    {{prod.description}}
+    </ion-col>
+    <ion-col>
+      {{prod.price}}
+    </ion-col>
+
+<ion-button class="btn-edit" (click)="onEditClicked(prod.id)">Edit</ion-button>
+<ion-button class="btn-delete" (click)="onDeleteProduct(prod.id)">Delete</ion-button>
+
+  </ion-row>  
+</ion-grid>
+
+
+
+<ion-button  class ="btn-fetch"(click)="onProductsFetch()">fetch </ion-button>
+<ion-button  class=" btn-delete" (click)="onDeleteALLProduct()">clean</ion-button>
+
+</div>
+
+</div>
+
+</div>
+
+</ion-content>
+
+
+<!--<ion-button type="submit" value="Fetch Product" (click)="onProductsFetch()">fetch </ion-button>
+<ion-button type="submit" value="Clean Product" (click)="onDeleteALLProduct()">clean</ion-button>-->
